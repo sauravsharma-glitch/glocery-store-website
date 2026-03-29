@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Fresh groceries, household essentials, and daily needs delivered to your doorstep. Best prices and fast delivery.">
+  <title>7 Heaven - Premium Grocery Store</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text x='50%' y='50%' text-anchor='middle' dy='.3em' font-size='80' fill='%232e7d32'>🛒</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #ffffff;
+      color: #1e2a32;
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      --primary-green: #2e7d32;
+      --primary-light: #4caf50;
+      --accent-orange: #f57c00;
+      --accent-light-orange: #fff3e0;
+      --gray-bg: #f8f9fa;
+      --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+      --transition: all 0.3s ease;
+      --whatsapp-green: #25D366;
+    }
+
+    .sticky-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: white;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .logo h1 {
+        margin-left: 40px; }
+
+    .header-main {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
+      gap: 16px;
+    }
+
+    .logo h1 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--primary-green);
+      letter-spacing: -0.5px;
+    }
+    .logo span {
+      color: var(--accent-orange);
+    }
+    .logo a {
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: #334155;
+      font-weight: 500;
+      transition: var(--transition);
+      font-size: 0.95rem;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--primary-green);
+    }
+    .cart-whatsapp {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .cart-icon {
+      position: relative;
+      font-size: 1.6rem;
+      cursor: pointer;
+      color: #1e2a32;
+      transition: var(--transition);
+      text-decoration: none;
+      display: inline-block;
+    }
+    .cart-icon:hover { color: var(--primary-green); }
+    .cart-count {
+      position: absolute;
+      top: -8px;
+      right: -12px;
+      background: var(--accent-orange);
+      color: white;
+      font-size: 0.7rem;
+      font-weight: bold;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .whatsapp-btn-header {
+      background: var(--whatsapp-green);
+      border: none;
+      padding: 8px 20px;
+      border-radius: 40px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .whatsapp-btn-header:hover {
+      background: #128C7E;
+      transform: scale(1.02);
+    }
+
+    /* Hero Slider */
+    .hero-slider {
+      position: relative;
+      margin: 32px 0 32px;
+      border-radius: 28px;
+      overflow: hidden;
+      height: 500px;
+    }
+    .slides-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 0.7s ease-in-out;
+      background-size: cover;
+      background-position: center;
+      border-radius: 28px;
+    }
+    .slide.active {
+      opacity: 1;
+    }
+    .slide::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 100%);
+      border-radius: 28px;
+    }
+    .slide-content {
+      position: absolute;
+      bottom: 80px;
+      left: 60px;
+      right: 60px;
+      color: white;
+      z-index: 2;
+      max-width: 55%;
+    }
+    .slide-content h2 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+    .slide-content p {
+      font-size: 1.2rem;
+      margin-bottom: 28px;
+      opacity: 0.95;
+    }
+    .slider-btn {
+      background: var(--accent-orange);
+      color: white;
+      padding: 12px 36px;
+      border-radius: 50px;
+      border: none;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .slider-btn:hover {
+      background: #e65100;
+      transform: scale(1.02);
+    }
+    .slider-dots {
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 12px;
+      z-index: 3;
+    }
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.6);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .dot.active {
+      background: var(--accent-orange);
+      width: 28px;
+      border-radius: 14px;
+    }
+    .slider-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.3);
+      backdrop-filter: blur(8px);
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: white;
+      font-size: 1.5rem;
+      transition: var(--transition);
+      z-index: 3;
+    }
+    .slider-arrow:hover {
+      background: var(--accent-orange);
+    }
+    .arrow-left { left: 24px; }
+    .arrow-right { right: 24px; }
+
+    /* Offer Banner Styles */
+    .offer-banner {
+      background: linear-gradient(135deg, #f57c00, #ff9800);
+      border-radius: 24px;
+      margin: 24px 0 40px;
+      padding: 28px 32px;
+      box-shadow: var(--shadow-md);
+      animation: fadeInUp 0.6s ease;
+    }
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .offer-title {
+      text-align: center;
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: white;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+    .offer-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .offer-badge {
+      background: rgba(255,255,255,0.2);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 16px 24px;
+      text-align: center;
+      min-width: 140px;
+      border: 1px solid rgba(255,255,255,0.3);
+    }
+    .offer-badge p {
+      color: white;
+      font-weight: 700;
+      font-size: 1rem;
+      line-height: 1.4;
+    }
+    .offer-content {
+      flex: 1;
+      text-align: center;
+    }
+    .offer-content p {
+      color: white;
+      font-size: 1.1rem;
+      margin: 8px 0;
+      font-weight: 500;
+    }
+    .offer-content p strong {
+      font-size: 1.3rem;
+      font-weight: 800;
+      background: rgba(0,0,0,0.3);
+      padding: 4px 12px;
+      border-radius: 40px;
+      display: inline-block;
+      margin: 0 4px;
+    }
+    .offer-content p b {
+      color: #fff9c4;
+      font-weight: 800;
+    }
+    .offer-note {
+      text-align: center;
+      margin-top: 16px;
+      color: rgba(255,255,255,0.9);
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+    @media (max-width: 768px) {
+      .offer-container {
+        flex-direction: column;
+      }
+      .offer-badge {
+        width: 100%;
+      }
+      .offer-title {
+        font-size: 1.2rem;
+      }
+      .offer-content p {
+        font-size: 0.9rem;
+      }
+      .offer-content p strong {
+        font-size: 1rem;
+      }
+    }
+
+    /* Section Title */
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 48px 0 28px;
+      position: relative;
+      display: inline-block;
+    }
+    .section-title:after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 70px;
+      height: 4px;
+      background: var(--accent-orange);
+      border-radius: 4px;
+    }
+
+    /* Categories Grid */
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+      margin: 24px 0 32px;
+    }
+    .category-card {
+      background: white;
+      padding: 28px 16px;
+      text-align: center;
+      border-radius: 24px;
+      transition: var(--transition);
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid #f0f0f0;
+    }
+    .category-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--primary-green);
+    }
+    .category-icon {
+      width: 70px;
+      height: 70px;
+      background: var(--accent-light-orange);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      font-size: 2rem;
+      color: var(--primary-green);
+    }
+    .category-card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .category-card p {
+      font-size: 0.85rem;
+      color: #64748b;
+      margin-bottom: 16px;
+    }
+    .category-shop-btn {
+      background: transparent;
+      border: 2px solid var(--primary-green);
+      color: var(--primary-green);
+      padding: 8px 20px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .category-shop-btn:hover {
+      background: var(--primary-green);
+      color: white;
+    }
+
+    /* Product Slider Section */
+    .product-slider-section {
+      margin: 48px 0;
+    }
+    .product-slider-container {
+      position: relative;
+      overflow: hidden;
+      margin: 24px 0;
+    }
+    .product-slider-track {
+      display: flex;
+      gap: 24px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      scrollbar-width: thin;
+      padding: 8px 4px 20px 4px;
+    }
+    .product-slider-track::-webkit-scrollbar {
+      height: 6px;
+    }
+    .product-slider-track::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 10px;
+    }
+    .product-slider-track::-webkit-scrollbar-thumb {
+      background: var(--accent-orange);
+      border-radius: 10px;
+    }
+    .product-slide {
+      flex: 0 0 260px;
+      background: white;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      cursor: pointer;
+      text-align: center;
+    }
+    .product-slide:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+    }
+    .product-slide-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+    .product-slide-info {
+      padding: 16px;
+    }
+    .product-slide-name {
+      font-weight: 700;
+      font-size: 1rem;
+      color: #1e2a32;
+    }
+    .wishlist-icon-slide {
+      background: white;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition);
+      color: #cbd5e1;
+      margin-top: 8px;
+    }
+    .wishlist-icon-slide.active {
+      color: #e11d48;
+    }
+    .slider-nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: var(--shadow-md);
+      color: var(--primary-green);
+      z-index: 2;
+      transition: var(--transition);
+    }
+    .slider-nav-btn:hover {
+      background: var(--primary-green);
+      color: white;
+    }
+    .slider-nav-left { left: -12px; }
+    .slider-nav-right { right: -12px; }
+
+    /* Offers Section with Images */
+    .offers-section {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 28px;
+      margin: 48px 0;
+    }
+    .offer-card {
+      position: relative;
+      border-radius: 28px;
+      overflow: hidden;
+      height: 280px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .offer-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+    }
+    .offer-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .offer-card:hover .offer-img {
+      transform: scale(1.05);
+    }
+    .offer-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 32px;
+      color: white;
+    }
+    .offer-overlay h3 {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+    .offer-overlay p {
+      font-size: 1rem;
+      margin-bottom: 20px;
+      opacity: 0.95;
+    }
+    .offer-btn {
+      background: var(--accent-orange);
+      border: none;
+      padding: 10px 24px;
+      border-radius: 40px;
+      color: white;
+      font-weight: 600;
+      width: fit-content;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .offer-btn:hover {
+      background: #e65100;
+    }
+
+    /* Daily Essentials Banner */
+    .daily-essentials {
+      background: linear-gradient(135deg, #1e4a2f, #2e7d32);
+      border-radius: 28px;
+      padding: 48px 40px;
+      margin: 48px 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+    }
+    .daily-essentials h3 {
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+    }
+    .essentials-items {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+    .essentials-items span {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1rem;
+    }
+
+    /* Features Grid */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 32px;
+      background: var(--gray-bg);
+      padding: 48px 32px;
+      border-radius: 48px;
+      margin: 48px 0;
+    }
+    .feature {
+      text-align: center;
+    }
+    .feature i {
+      font-size: 2.5rem;
+      color: var(--primary-green);
+      margin-bottom: 12px;
+    }
+
+    /* Testimonials */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 28px;
+      margin: 32px 0 48px;
+    }
+    .testimonial {
+      background: white;
+      padding: 24px;
+      border-radius: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+    .stars {
+      color: #ffb400;
+      margin-bottom: 12px;
+    }
+
+    /* Footer */
+    footer {
+      background: #0f2b1d;
+      color: #ddd;
+      padding: 48px 0 24px;
+      margin-top: 48px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 32px;
+    }
+    .footer-col h4 {
+      color: white;
+      margin-bottom: 20px;
+    }
+    .footer-col a, .footer-col p {
+      display: block;
+      color: #bbb;
+      text-decoration: none;
+      margin-bottom: 12px;
+      transition: var(--transition);
+    }
+    .footer-col a:hover {
+      color: var(--accent-orange);
+    }
+    .social-icons i {
+      font-size: 1.6rem;
+      margin-right: 16px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .social-icons i:hover {
+      color: var(--accent-orange);}
+
+    .newsletter input {
+      padding: 12px;
+      margin-bottom: 8px;
+      border-radius: 40px;
+      border: none;
+      width: 70%;
+      margin-right: 8px;
+    }
+    .btn-primary {
+      background: var(--accent-orange);
+      color: white;
+      padding: 10px 24px;
+      border-radius: 40px;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .btn-primary:hover {
+      background: #e65100;
+    }
+
+    .float-whatsapp {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background-color: var(--whatsapp-green);
+      color: white;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    @media (max-width: 768px) {
+      .header-main { flex-direction: column; align-items: stretch; }
+      .nav-links { justify-content: center; gap: 20px; }
+      .hero-slider { height: 380px; }
+      .slide-content { left: 24px; right: 24px; bottom: 40px; max-width: 100%; text-align: center; }
+      .slide-content h2 { font-size: 1.8rem; }
+      .product-slide { flex: 0 0 220px; }
+      .slider-nav-left { left: 4px; }
+      .slider-nav-right { right: 4px; }
+      .offers-section { grid-template-columns: 1fr; }
+      .float-whatsapp { width: 50px; height: 50px; font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="sticky-header">
+  <div class="container header-main">
+    <div class="logo"><a href="index.html" style="text-decoration: none;"><h1>7 <span>HEAVEN</span></h1></a></div>
+    <div class="nav-links">
+      <a href="index.html" class="active">Home</a>
+      <a href="categories.html">Categories</a>
+      <a href="shop.html">Shop</a>
+      <a href="offers.html">Offers</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <div class="cart-whatsapp">
+        <a href="cart.html" class="cart-icon" id="cartIconLink">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="cart-count" id="cartCount">0</span>
+        </a>
+        <button class="whatsapp-btn-header" id="whatsappHeaderBtn"><i class="fab fa-whatsapp"></i> WhatsApp</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main class="container">
+  <!-- Hero Slider -->
+  <div class="hero-slider" id="heroSlider">
+    <div class="slides-container" id="slidesContainer"></div>
+    <div class="slider-arrow arrow-left" id="prevSlide"><i class="fas fa-chevron-left"></i></div>
+    <div class="slider-arrow arrow-right" id="nextSlide"><i class="fas fa-chevron-right"></i></div>
+    <div class="slider-dots" id="sliderDots"></div>
+  </div>
+
+  <!-- Offer Banner -->
+  <div class="offer-banner">
+    <h2 class="offer-title">HOME DELIVERY ALSO AVAILABLE 🚚</h2>
+    <div class="offer-container">
+      <div class="offer-badge">
+        <p>800+ Brands<br>2000+ Products</p>
+      </div>
+      <div class="offer-content">
+        <p><strong>₹1499</strong> की खरीद पर <b>1KG चीनी फ्री</b></p>
+        <p><strong>₹2499</strong> की खरीद पर <b>1KG डिटर्जेंट पाउडर फ्री</b></p>
+      </div>
+      <div class="offer-badge">
+        <p>Min 5%<br>Upto 40% OFF</p>
+      </div>
+    </div>
+    <p class="offer-note">*Offer Valid 3 Days</p>
+  </div>
+
+  <!-- Categories Section -->
+  <h2 class="section-title">Shop by Category</h2>
+  <div class="categories-grid" id="categoriesGrid"></div>
+
+  <!-- Product Slider - No Prices, Just Images -->
+  <div class="product-slider-section">
+    <h2 class="section-title">🍃 Fresh Picks</h2>
+    <div class="product-slider-container">
+      <div class="slider-nav-btn slider-nav-left" id="productSliderLeft"><i class="fas fa-chevron-left"></i></div>
+      <div class="slider-nav-btn slider-nav-right" id="productSliderRight"><i class="fas fa-chevron-right"></i></div>
+      <div class="product-slider-track" id="productSliderTrack"></div>
+    </div>
+  </div>
+
+  <!-- Offers Section with Images -->
+  <h2 class="section-title">🎉 Special Offers</h2>
+  <div class="offers-section" id="offersGrid"></div>
+
+  <!-- Daily Essentials Banner -->
+  <div class="daily-essentials">
+    <div>
+      <h3><i class="fas fa-clock"></i> Daily Essentials</h3>
+      <p>Most ordered items from our customers</p>
+      <div class="essentials-items">
+        <span><i class="fas fa-apple-alt"></i> Fresh Fruits</span>
+        <span><i class="fas fa-carrot"></i> Vegetables</span>
+        <span><i class="fas fa-bread-slice"></i> Bread</span>
+        <span><i class="fas fa-tint"></i> Milk</span>
+        <span><i class="fas fa-egg"></i> Eggs</span>
+      </div>
+    </div>
+    <button class="btn-primary" onclick="window.location.href='shop.html'">View All →</button>
+  </div>
+
+  <!-- Why Choose Us -->
+  <div class="features-grid">
+    <div class="feature"><i class="fas fa-truck-fast"></i><h3>Fast Delivery</h3><p>Within 2 hours</p></div>
+    <div class="feature"><i class="fas fa-leaf"></i><h3>Fresh Products</h3><p>Direct from farms</p></div>
+    <div class="feature"><i class="fas fa-tag"></i><h3>Best Prices</h3><p>Daily deals & discounts</p></div>
+    <div class="feature"><i class="fas fa-undo-alt"></i><h3>Easy Returns</h3><p>No questions asked</p></div>
+  </div>
+
+  <!-- Testimonials -->
+  <h2 class="section-title">⭐ Customer Reviews</h2>
+  <div class="testimonials-grid">
+    <div class="testimonial"><div class="stars">★★★★★</div><p>"Amazing quality! The veggies are super fresh and delivery is super fast."</p><h4>- Priya Sharma</h4></div>
+    <div class="testimonial"><div class="stars">★★★★☆</div><p>"Great discounts and household essentials always in stock."</p><h4>- Raj Mehta</h4></div>
+    <div class="testimonial"><div class="stars">★★★★★</div><p>"My go-to grocery store. Fresh produce every time!"</p><h4>- Sneha Kapoor</h4></div>
+  </div>
+</main>
+
+<footer>
+  <div class="container footer-grid">
+    <div class="footer-col"><h4>7 HEAVEN</h4><p>Your premium grocery partner</p><div class="social-icons"><i class="fab fa-facebook"></i><i class="fab fa-instagram"></i><i class="fab fa-twitter"></i></div></div>
+    <div class="footer-col"><h4>Quick Links</h4><a href="about.html">About Us</a><a href="contact.html">Contact</a><a href="faqs.html">FAQs</a><a href="shop.html">Shop</a><a href="cart.html">Cart</a></div>
+    <div class="footer-col"><h4>Contact</h4><p><i class="fas fa-phone"></i> +91 9027038209</p><p><i class="fab fa-whatsapp"></i> WhatsApp: +91 9027038209</p><p><i class="fas fa-envelope"></i> support@7heaven.com</p></div>
+    <div class="footer-col newsletter"><h4>Newsletter</h4><input type="email" id="newsEmail" placeholder="Your email"><button class="btn-primary" id="subscribeBtn" style="padding:8px 16px;">Subscribe</button></div>
+  </div>
+  <div class="container" style="text-align:center; margin-top:40px;">© 2025 7 HEAVEN — All rights reserved.</div>
+</footer>
+
+<div class="float-whatsapp" id="floatWhatsAppBtn"><i class="fab fa-whatsapp"></i></div>
+
+<script>
+  // Load cart from localStorage to update cart count
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+  // Update cart count in header
+  function updateCartCount() {
+    const count = cart.reduce((sum, item) => sum + item.qty, 0);
+    const cartCountElem = document.getElementById("cartCount");
+    if(cartCountElem) cartCountElem.innerText = count;
+  }
+
+  // Hero Slider Data
+  const slides = [
+  { 
+    image: "https://images.unsplash.com/photo-1542838132-92c53300491e?w=1400&auto=format", 
+    title: "Fresh Vegetables & Fruits", 
+    subtitle: "Farm-fresh produce delivered to your doorstep", 
+    btnText: "Shop Now" 
+  },
+  { 
+    image: "https://images.unsplash.com/photo-1550989460-0adf9ea622e2?w=1400&auto=format", 
+    title: "Daily Essentials", 
+    subtitle: "Milk, Bread, Eggs & more - Get 20% off", 
+    btnText: "Shop Now" 
+  },
+  { 
+    image: "https://images.unsplash.com/photo-1597362925123-77861d3fbac7?w=1400&auto=format", 
+    title: "Organic & Natural", 
+    subtitle: "100% organic groceries for healthy living", 
+    btnText: "Shop Now" 
+  },
+  // NEW SLIDES - You can add more below:
+  { 
+    image: "https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=1400&auto=format", 
+    title: "Farm Fresh Vegetables", 
+    subtitle: "Straight from local farms to your kitchen", 
+    btnText: "Explore Now" 
+  },
+  { 
+    image: "https://images.unsplash.com/photo-1567696911980-2eed69a46042?w=1400&auto=format", 
+    title: "One-Stop Grocery Shop", 
+    subtitle: "Everything you need under one roof", 
+    btnText: "Shop Collection" 
+  },{
+  image: "https://images.unsplash.com/photo-1542838132-92c53300491e?w=1400&auto=format",
+  title: "7 HEVEN - Fresh Groceries",
+  subtitle: "Farm fresh vegetables, fruits & daily essentials at best prices",
+  btnText: "Shop Now"
+},
+{
+  image: "Images/banner.png",
+  title: "Up to 40% OFF",
+  subtitle: "Big savings on groceries, snacks & household items",
+  btnText: "View Offers"
+}
+];
+
+  let currentSlide = 0, slideInterval;
+
+  function initSlider() {
+    const container = document.getElementById("slidesContainer");
+    const dotsContainer = document.getElementById("sliderDots");
+    container.innerHTML = slides.map((slide, i) => `<div class="slide ${i===0?'active':''}" style="background-image:url('${slide.image}')"><div class="slide-content"><h2>${slide.title}</h2><p>${slide.subtitle}</p><button class="slider-btn" onclick="window.location.href='shop.html'">${slide.btnText} →</button></div></div>`).join('');
+    dotsContainer.innerHTML = slides.map((_, i) => `<div class="dot ${i===0?'active':''}" data-slide="${i}"></div>`).join('');
+    document.querySelectorAll('.dot').forEach(dot => dot.addEventListener('click', () => goToSlide(parseInt(dot.dataset.slide))));
+    startAutoSlide();
+  }
+  function goToSlide(i) { currentSlide = i; document.querySelectorAll('.slide').forEach((s, idx) => s.classList.toggle('active', idx===i)); document.querySelectorAll('.dot').forEach((d, idx) => d.classList.toggle('active', idx===i)); resetAutoSlide(); }
+  function nextSlide() { goToSlide((currentSlide+1)%slides.length); }
+  function prevSlide() { goToSlide((currentSlide-1+slides.length)%slides.length); }
+  function startAutoSlide() { slideInterval = setInterval(nextSlide, 5000); }
+  function resetAutoSlide() { clearInterval(slideInterval); startAutoSlide(); }
+  document.getElementById("prevSlide")?.addEventListener("click", prevSlide);
+  document.getElementById("nextSlide")?.addEventListener("click", nextSlide);
+
+  // Categories
+  const categories = [
+    { name: "Fruits & Vegetables", icon: "fa-apple-alt", items: "Apple, Banana, Tomato" },
+    { name: "Dairy & Bakery", icon: "fa-cheese", items: "Milk, Bread, Eggs" },
+    { name: "Snacks & Beverages", icon: "fa-cookie-bite", items: "Chips, Biscuits, Juice" },
+    { name: "Atta, Rice & Dal", icon: "fa-bowl-rice", items: "Wheat, Rice, Pulses" },
+    { name: "Masala & Spices", icon: "fa-pepper-hot", items: "Haldi, Mirch, Masala" },
+    { name: "Household", icon: "fa-broom", items: "Bucket, Mug, Storage" },
+    { name: "Personal Care", icon: "fa-hand-sparkles", items: "Soap, Shampoo" },
+    { name: "Organic", icon: "fa-seedling", items: "Organic Atta, Honey" }
+  ];
+  document.getElementById("categoriesGrid").innerHTML = categories.map(cat => `<div class="category-card"><div class="category-icon"><i class="fas ${cat.icon}"></i></div><h3>${cat.name}</h3><p>${cat.items}</p><button class="category-shop-btn">Shop Now →</button></div>`).join('');
+  document.querySelectorAll('.category-shop-btn').forEach(btn => btn.addEventListener('click', () => window.location.href='shop.html'));
+
+  // Product Slider Data
+  const productImages = [
+    { name: "Organic Apples", img: "https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?w=400&auto=format", id: 1 },
+    { name: "Fresh Milk", img: "https://images.unsplash.com/photo-1550583724-b2692b85b150?w=400&auto=format", id: 2 },
+    { name: "Potato Chips", img: "https://images.unsplash.com/photo-1566478989037-eec170784d0b?w=400&auto=format", id: 3 },
+    { name: "Fresh Bread", img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&auto=format", id: 5 },
+    { name: "Butter", img: "https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?w=400&auto=format", id: 12 },
+    { name: "Cold Drink", img: "https://images.unsplash.com/photo-1581636625402-29b2a704ef13?w=400&auto=format", id: 13 },
+    { name: "Pasta", img: "https://images.unsplash.com/photo-1589308078059-be1415eab4c3?w=400&auto=format", id: 16 },
+    { name: "Cooking Oil", img: "https://images.unsplash.com/photo-1615486364233-8d7d0c6dba43?w=400&auto=format", id: 17 },
+    { name: "Rice Bag", img: "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&auto=format", id: 18 },
+    { name: "Chocolate", img: "https://images.unsplash.com/photo-1606312619070-d48b4c652a52?w=400&auto=format", id: 19 },
+    { name: "Biscuits", img: "https://images.unsplash.com/photo-1589307000257-4a2a6cfd5e7b?w=400&auto=format", id: 20 },
+    { name: "Shampoo", img: "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=400&auto=format", id: 21 },
+    { name: "Soap", img: "https://images.unsplash.com/photo-1600857062241-98e5dba7f214?w=400&auto=format", id: 22 },
+    { name: "Toothpaste", img: "https://images.unsplash.com/photo-1588776814546-ec7e6c8dc1c7?w=400&auto=format", id: 23 },
+    { name: "Detergent Powder", img: "https://images.unsplash.com/photo-1610555356070-d0efb6505f81?w=400&auto=format", id: 25 }
+  ];
+  
+  let wishlistSet = new Set();
+  function renderProductSlider() {
+    const track = document.getElementById("productSliderTrack");
+    track.innerHTML = productImages.map(p => `<div class="product-slide" onclick="window.location.href='shop.html'"><img class="product-slide-img" src="${p.img}" alt="${p.name}"><div class="product-slide-info"><div class="product-slide-name">${p.name}</div><div class="wishlist-icon-slide ${wishlistSet.has(p.id) ? 'active' : ''}" data-id="${p.id}" onclick="event.stopPropagation(); toggleWishlistSlide(${p.id})"><i class="fas fa-heart"></i></div></div></div>`).join('');
+  }
+  function toggleWishlistSlide(id) { wishlistSet.has(id) ? wishlistSet.delete(id) : wishlistSet.add(id); renderProductSlider(); showNotification(wishlistSet.has(id) ? "Added to wishlist!" : "Removed"); }
+  
+  // Product Slider Scroll
+  const track = document.getElementById("productSliderTrack");
+  document.getElementById("productSliderLeft")?.addEventListener("click", () => track.scrollBy({ left: -280, behavior: "smooth" }));
+  document.getElementById("productSliderRight")?.addEventListener("click", () => track.scrollBy({ left: 280, behavior: "smooth" }));
+
+  // Offers with Images
+  const offers = [
+    { img: "https://images.unsplash.com/photo-1610348725531-843dff563e2c?w=600&auto=format", title: "50% OFF", desc: "On fresh fruits & vegetables", btn: "Grab Deal" },
+    { img: "https://images.unsplash.com/photo-1606923829579-0cb981a83e2e?w=600&auto=format", title: "Buy 1 Get 1", desc: "On selected snacks & beverages", btn: "Shop Now" },
+    { img: "https://images.unsplash.com/photo-1579113800032-c38bd7635818?w=600&auto=format", title: "Free Delivery", desc: "On orders above ₹499", btn: "Order Now" }
+  ];
+  document.getElementById("offersGrid").innerHTML = offers.map(offer => `<div class="offer-card"><img class="offer-img" src="${offer.img}" alt="offer"><div class="offer-overlay"><h3>${offer.title}</h3><p>${offer.desc}</p><button class="offer-btn" onclick="window.location.href='shop.html'">${offer.btn} →</button></div></div>`).join('');
+
+  function sendToWhatsApp() {
+    const phoneNumber = "919027038209";
+    const message = "🌟 *Hello 7 Heaven!* 🌟\n\nI'm interested in your grocery products. Please share your catalog and current offers.\n\nThank you! 🛒";
+    window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
+  }
+
+  function showNotification(msg) {
+    const n = document.createElement('div');
+    n.textContent = msg;
+    n.style.cssText = 'position:fixed; bottom:100px; right:20px; background:#2e7d32; color:white; padding:12px 20px; border-radius:40px; z-index:1200';
+    document.body.appendChild(n);
+    setTimeout(() => n.remove(), 2000);
+  }
+
+  // Event Listeners
+  document.getElementById("whatsappHeaderBtn")?.addEventListener("click", sendToWhatsApp);
+  document.getElementById("floatWhatsAppBtn")?.addEventListener("click", sendToWhatsApp);
+  document.getElementById("subscribeBtn")?.addEventListener("click", () => {
+    const email = document.getElementById("newsEmail")?.value;
+    showNotification(email ? "Subscribed! 🎉" : "Enter email");
+    if(email) document.getElementById("newsEmail").value = "";
+  });
+
+  // Initialize
+  initSlider();
+  renderProductSlider();
+  updateCartCount();
+</script>
+</body>
+</html>

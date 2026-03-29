@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+ <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text x='50%' y='50%' text-anchor='middle' dy='.3em' font-size='80' fill='%232e7d32'>🛒</text></svg>">
+  <meta name="description" content="Explore all grocery categories at 7 HEAVEN - Fruits, Vegetables, Dairy, Snacks, Household items and more. 100% fresh, fast delivery, best prices.">
+  <title>7 HEAVEN - Shop by Category | Fresh Grocery Store</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #fefef8;
+      color: #1e2a32;
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      --primary-green: #2e7d32;
+      --primary-light: #4caf50;
+      --accent-orange: #f57c00;
+      --accent-light: #fff3e0;
+      --gray-bg: #f8f9fa;
+      --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 8px 28px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      --whatsapp-green: #25D366;
+    }
+
+    /* Header Styles */
+    .sticky-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: white;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .header-main {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
+      gap: 16px;
+    }
+
+    .logo h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--primary-green);
+      letter-spacing: -0.5px;
+    }
+    .logo span {
+      color: var(--accent-orange);
+    }
+    .logo a {
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: #334155;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--primary-green);
+    }
+    .cart-whatsapp {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .cart-icon {
+      position: relative;
+      font-size: 1.6rem;
+      cursor: pointer;
+      color: #1e2a32;
+      transition: var(--transition);
+      text-decoration: none;
+      display: inline-block;
+    }
+    .cart-icon:hover { color: var(--primary-green); }
+    .cart-count {
+      position: absolute;
+      top: -8px;
+      right: -12px;
+      background: var(--accent-orange);
+      color: white;
+      font-size: 0.7rem;
+      font-weight: bold;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .whatsapp-btn-header {
+      background: var(--whatsapp-green);
+      border: none;
+      padding: 8px 18px;
+      border-radius: 40px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .whatsapp-btn-header:hover {
+      background: #128C7E;
+      transform: scale(1.02);
+    }
+  
+    .logo h1 {
+        margin-left: 40px;}
+        
+    /* Enhanced Hero Banner with Overlay and CTA */
+    .hero-banner {
+      position: relative;
+      background: linear-gradient(135deg, #0f3b1f 0%, #1b5e20 50%, #2e7d32 100%);
+      border-radius: 32px;
+      margin: 32px 0 48px;
+      overflow: hidden;
+      min-height: 480px;
+      display: flex;
+      align-items: center;
+    }
+    .hero-bg-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.25;
+      mix-blend-mode: overlay;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 60px 48px;
+      max-width: 55%;
+      color: white;
+    }
+    .hero-content h1 {
+      font-size: 3.2rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+    .hero-content p {
+      font-size: 1.2rem;
+      opacity: 0.95;
+      margin-bottom: 32px;
+      line-height: 1.5;
+    }
+    .hero-stats {
+      display: flex;
+      gap: 32px;
+      margin-top: 24px;
+    }
+    .hero-stat {
+      text-align: center;
+    }
+    .hero-stat .number {
+      font-size: 1.8rem;
+      font-weight: 800;
+      display: block;
+    }
+    .hero-stat .label {
+      font-size: 0.85rem;
+      opacity: 0.85;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .btn-hero-primary {
+      background: var(--accent-orange);
+      color: white;
+      padding: 14px 36px;
+      border-radius: 50px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+      font-size: 1rem;
+    }
+    .btn-hero-primary:hover {
+      background: #e65100;
+      transform: scale(1.02);
+    }
+    .btn-hero-secondary {
+      background: transparent;
+      border: 2px solid white;
+      color: white;
+      padding: 12px 32px;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .btn-hero-secondary:hover {
+      background: rgba(255,255,255,0.2);
+    }
+
+    /* Trust Badges Section */
+    .trust-section {
+      background: linear-gradient(135deg, #fff9f0, #fff3e0);
+      border-radius: 28px;
+      padding: 40px 32px;
+      margin: 40px 0 48px;
+      text-align: center;
+    }
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 32px;
+      margin-top: 24px;
+    }
+    .trust-item {
+      text-align: center;
+      padding: 20px;
+    }
+    .trust-icon {
+      width: 70px;
+      height: 70px;
+      background: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      font-size: 2rem;
+      color: var(--primary-green);
+      box-shadow: var(--shadow-sm);
+    }
+    .trust-item h4 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .trust-item p {
+      font-size: 0.85rem;
+      color: #5a6e7a;
+    }
+
+    /* Section Title */
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 48px 0 24px;
+      position: relative;
+      display: inline-block;
+    }
+    .section-title:after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 70px;
+      height: 4px;
+      background: var(--accent-orange);
+      border-radius: 4px;
+    }
+
+    /* Categories Grid - Enhanced */
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 28px;
+      margin: 32px 0 60px;
+    }
+
+    .category-card {
+      background: white;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      cursor: pointer;
+      position: relative;
+    }
+
+    .category-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .category-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .category-card:hover .category-image {
+      transform: scale(1.05);
+    }
+
+    .image-wrapper {
+      position: relative;
+      overflow: hidden;
+      background: #f0f2f5;
+    }
+
+    .category-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .category-card:hover .category-overlay {
+      opacity: 1;
+    }
+
+    .category-icon {
+      position: absolute;
+      bottom: 16px;
+      right: 16px;
+      background: white;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: var(--primary-green);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      transition: var(--transition);
+    }
+
+    .category-card:hover .category-icon {
+      background: var(--accent-orange);
+      color: white;
+      transform: scale(1.1);
+    }
+
+    .category-info {
+      padding: 20px;
+    }
+
+    .category-info h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #1e2a32;
+    }
+
+    .category-info p {
+      color: #64748b;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+
+    .category-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .category-tags span {
+      background: var(--gray-bg);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      color: var(--primary-green);
+      font-weight: 500;
+    }
+
+    .shop-now-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 16px;
+      color: var(--primary-green);
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .shop-now-link i {
+      transition: transform 0.2s;
+    }
+
+    .shop-now-link:hover {
+      color: var(--accent-orange);
+      gap: 12px;
+    }
+
+    /* Quality Assurance Banner */
+    .quality-banner {
+      background: linear-gradient(135deg, #2e7d32, #1b5e20);
+      border-radius: 28px;
+      padding: 48px 40px;
+      margin: 48px 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+    }
+    .quality-banner h3 {
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+    }
+    .quality-buttons {
+      display: flex;
+      gap: 16px;
+    }
+    .btn-outline-light {
+      background: transparent;
+      border: 2px solid white;
+      padding: 12px 28px;
+      border-radius: 40px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .btn-outline-light:hover {
+      background: white;
+      color: var(--primary-green);
+    }
+
+    /* Footer */
+    footer {
+      background: #0f2b1d;
+      color: #ddd;
+      padding: 48px 0 24px;
+      margin-top: 60px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 32px;
+    }
+    .footer-col h4 {
+      color: white;
+      margin-bottom: 20px;
+    }
+    .footer-col a, .footer-col p {
+      display: block;
+      color: #bbb;
+      text-decoration: none;
+      margin-bottom: 12px;
+      transition: var(--transition);
+    }
+    .footer-col a:hover {
+      color: var(--accent-orange);
+    }
+    .social-icons i {
+      font-size: 1.6rem;
+      margin-right: 16px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .social-icons i:hover {
+      color: var(--accent-orange);
+    }
+    .newsletter input {
+      padding: 12px;
+      border-radius: 40px;
+      border: none;
+      width: 70%;
+      margin-right: 8px;
+    }
+    .btn-primary {
+      background: var(--accent-orange);
+      color: white;
+      padding: 10px 24px;
+      border-radius: 40px;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .btn-primary:hover {
+      background: #e65100;
+    }
+
+    /* Floating WhatsApp */
+    .float-whatsapp {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background-color: var(--whatsapp-green);
+      color: white;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      cursor: pointer;
+      transition: var(--transition);
+      z-index: 1000;
+    }
+    .float-whatsapp:hover {
+      transform: scale(1.1);
+    }
+
+    @media (max-width: 768px) {
+      .header-main { flex-direction: column; align-items: stretch; }
+      .nav-links { justify-content: center; flex-wrap: wrap; gap: 16px; }
+      .hero-content { max-width: 100%; padding: 40px 24px; text-align: center; }
+      .hero-content h1 { font-size: 2rem; }
+      .hero-stats { justify-content: center; flex-wrap: wrap; gap: 20px; }
+      .hero-banner { min-height: auto; }
+      .hero-buttons { justify-content: center; }
+      .trust-grid { gap: 20px; }
+      .quality-banner { text-align: center; gap: 20px; justify-content: center; }
+      .categories-grid { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
+      .float-whatsapp { width: 50px; height: 50px; font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="sticky-header">
+  <div class="container header-main">
+    <div class="logo"><a href="index.html" style="text-decoration: none;"><h1>7 <span> HEAVEN </span></h1></a></div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="categories.html" class="active">Categories</a>
+      <a href="shop.html">Shop</a>
+      <a href="offers.html">Offers</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <div class="cart-whatsapp">
+        <a href="cart.html" class="cart-icon" id="cartIconLink">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="cart-count" id="cartCount">0</span>
+        </a>
+        <button class="whatsapp-btn-header" id="whatsappHeaderBtn"><i class="fab fa-whatsapp"></i> WhatsApp</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main>
+  <!-- Enhanced Hero Section with Background Image and Trust Stats -->
+  <div class="container">
+    <div class="hero-banner">
+      <img class="hero-bg-image" src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=1600&auto=format" alt="Fresh groceries background">
+      <div class="hero-content">
+        <h1>Fresh Groceries<br>Delivered in Minutes</h1>
+        <p>100% fresh, hygienically packed, and delivered to your doorstep with care. Choose from 19+ categories.</p>
+        <div class="hero-stats">
+          <div class="hero-stat"><span class="number">10K+</span><span class="label">Happy Customers</span></div>
+          <div class="hero-stat"><span class="number">500+</span><span class="label">Products</span></div>
+          <div class="hero-stat"><span class="number">30-min</span><span class="label">Avg Delivery</span></div>
+        </div>
+        <div class="hero-buttons">
+          <button class="btn-hero-primary" onclick="document.getElementById('categoriesSection').scrollIntoView({behavior:'smooth'})">Shop Now</button>
+          <button class="btn-hero-secondary" id="heroWhatsappBtn"><i class="fab fa-whatsapp"></i> Order on WhatsApp</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Trust Badges Section -->
+    <div class="trust-section"> 
+      <h2 style="font-size: 1.8rem; margin-bottom: 8px;">Why 10,000+ Families Trust 7 HEAVEN</h2>
+      <p style="color: #5a6e7a; margin-bottom: 20px;">Quality you can see, service you can trust</p>
+      <div class="trust-grid">
+        <div class="trust-item">
+          <div class="trust-icon"><i class="fas fa-leaf"></i></div>
+          <h4>Farm Fresh</h4>
+          <p>Directly sourced from local farms, no middlemen</p>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon"><i class="fas fa-temperature-low"></i></div>
+          <h4>Cold Storage</h4>
+          <p>Temperature-controlled delivery for freshness</p>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon"><i class="fas fa-hand-holding-heart"></i></div>
+          <h4>Quality Checked</h4>
+          <p>Every item passes 3-stage quality inspection</p>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon"><i class="fas fa-shield-alt"></i></div>
+          <h4>Safe Packaging</h4>
+          <p>Hygienic, tamper-proof & eco-friendly packaging</p>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon"><i class="fas fa-truck"></i></div>
+          <h4>Fast Delivery</h4>
+          <p>Get your groceries delivered within hours</p>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon"><i class="fas fa-tags"></i></div>
+          <h4>Best Prices</h4>
+          <p>Affordable pricing with daily discounts & offers</p>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon"><i class="fas fa-sync-alt"></i></div>
+          <h4>Easy Returns</h4>
+          <p>Hassle-free return & refund policy</p>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon"><i class="fas fa-headset"></i></div>
+          <h4>24/7 Support</h4>
+          <p>Dedicated customer support anytime</p>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <h4>Local Store</h4>
+          <p>Serving your area with trusted local presence</p>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon"><i class="fas fa-box-open"></i></div>
+          <h4>Wide Range</h4>
+          <p>1000+ products across all daily needs</p>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="section-title" id="categoriesSection">Shop by Category</h2>
+
+    <!-- Professional Categories Grid with Images -->
+    <div class="categories-grid" id="categoriesGrid"></div>
+
+    <!-- Quality Assurance Banner - Additional Trust Section -->
+    <div class="quality-banner">
+      <div>
+        <h3><i class="fas fa-medal"></i> 100% Satisfaction Guarantee</h3>
+        <p>Not happy with your order? We'll replace or refund within 24 hours. No questions asked!</p>
+      </div>
+      <div class="quality-buttons">
+        <button class="btn-outline-light" id="qualityWhatsappBtn"><i class="fab fa-whatsapp"></i> Talk to Us</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="container footer-grid">
+    <div class="footer-col">
+      <h4>7 HEAVEN</h4>
+      <p>Your daily grocery partner since 2020</p>
+      <div class="social-icons">
+        <i class="fab fa-facebook"></i>
+        <i class="fab fa-instagram"></i>
+        <i class="fab fa-twitter"></i>
+        <i class="fab fa-whatsapp"></i>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <a href="index.html">Home</a>
+      <a href="contact.html">Contact Us</a>
+      <a href="#">FAQs</a>
+      <a href="shop.html">Shop</a>
+      <a href="cart.html">Cart</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact Info</h4>
+      <p><i class="fas fa-phone"></i> +91 9027038209</p>
+      <p><i class="fab fa-whatsapp"></i> WhatsApp: +91 9027038209</p>
+      <p><i class="fas fa-envelope"></i> support@7heaven.com</p>
+      <p><i class="fas fa-map-marker-alt"></i> 123 MG Road, Bangalore</p>
+    </div>
+    <div class="footer-col newsletter">
+      <h4>Newsletter</h4>
+      <input type="email" id="newsEmail" placeholder="Your email address">
+      <button class="btn-primary" id="subscribeBtn" style="margin-top: 12px;">Subscribe</button>
+    </div>
+  </div>
+  <div class="container" style="text-align:center; margin-top:40px; padding-top:20px; border-top:1px solid rgba(255,255,255,0.1);">
+    © 2025 7 HEAVEN — All rights reserved. | Delivering happiness since 2020
+  </div>
+</footer>
+
+<!-- Floating WhatsApp Button -->
+<div class="float-whatsapp" id="floatWhatsAppBtn">
+  <i class="fab fa-whatsapp"></i>
+</div>
+
+<script>
+  // Load cart from localStorage to update cart count
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+  // Update cart count in header
+  function updateCartCount() {
+    const count = cart.reduce((sum, item) => sum + item.qty, 0);
+    const cartCountElem = document.getElementById("cartCount");
+    if(cartCountElem) cartCountElem.innerText = count;
+  }
+
+  // Category Data with Professional Images and Descriptions
+  const categoriesData = [
+    { name: "Fruits & Vegetables", catKey: "Fruits & Vegetables", image: "https://images.unsplash.com/photo-1566385101042-1a0aa0c1268c?w=600&auto=format", items: "Apple, Banana, Tomato, Grapes", description: "Fresh farm-picked fruits & organic vegetables", tags: ["Fresh", "Organic", "Seasonal"] },
+    { name: "Dairy & Bakery", catKey: "Dairy & Bakery", image: "https://images.unsplash.com/photo-1550583724-b2692b85b150?w=600&auto=format", items: "Milk, Bread, Eggs, Cheese", description: "Farm-fresh dairy & freshly baked goods", tags: ["Fresh Milk", "Bakery", "Eggs"] },
+    { name: "Snacks & Beverages", catKey: "Snacks & Beverages", image: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=600&auto=format", items: "Chips, Biscuits, Juice, Cold Drinks", description: "Crunchy snacks & refreshing beverages", tags: ["Chips", "Juices", "Energy"] },
+    { name: "Atta, Rice & Dal", catKey: "Atta, Rice & Dal", image: "https://images.unsplash.com/photo-1536304993881-ff6e9eefa2a6?w=600&auto=format", items: "Wheat Flour, Basmati Rice, Toor Dal", description: "Premium quality staples for daily cooking", tags: ["Atta", "Rice", "Pulses"] },
+    { name: "Cooking Essentials", catKey: "Cooking Essentials", image: "https://images.unsplash.com/photo-1472476443507-c7a5948772fc?w=600&auto=format", items: "Oil, Ghee, Salt, Sugar", description: "Everyday cooking must-haves", tags: ["Oil", "Ghee", "Spices Base"] },
+    { name: "Masala & Spices", catKey: "Masala & Spices", image: "https://images.unsplash.com/photo-1532336414038-cf19250c5757?w=600&auto=format", items: "Haldi, Mirch, Garam Masala", description: "Authentic Indian spices for rich flavor", tags: ["Spices", "Masala", "Herbs"] },
+    { name: "Frozen Foods", catKey: "Frozen Foods", image: "https://images.unsplash.com/photo-1581798459219-318e76aecc7b?w=600&auto=format", items: "Ice Cream, Frozen Peas, Nuggets", description: "Quick & easy frozen delights", tags: ["Ice Cream", "Frozen Veg", "Ready to Cook"] },
+    { name: "Breakfast Items", catKey: "Breakfast Items", image: "https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?w=600&auto=format", items: "Cornflakes, Oats, Muesli", description: "Healthy start to your day", tags: ["Cereal", "Oats", "Healthy"] },
+    { name: "Instant Food", catKey: "Instant Food", image: "https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?w=600&auto=format", items: "Maggi, Pasta, Noodles", description: "Quick meals for busy days", tags: ["Noodles", "Pasta", "2-Minute"] },
+    { name: "Cold Drinks", catKey: "Cold Drinks", image: "https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=600&auto=format", items: "Coke, Pepsi, Sprite", description: "Chilled beverages & sodas", tags: ["Soda", "Energy Drink", "Juice"] },
+    { name: "Household Items", catKey: "Household Items", image: "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=600&auto=format", items: "Bucket, Mug, Storage", description: "Essential home utilities", tags: ["Storage", "Kitchen Tools"] },
+    { name: "Cleaning Supplies", catKey: "Cleaning Supplies", image: "https://images.unsplash.com/photo-1563453392212-326f5e854473?w=600&auto=format", items: "Surf, Harpic, Detergent", description: "Powerful cleaning solutions", tags: ["Detergent", "Floor Cleaner"] },
+    { name: "Personal Care", catKey: "Personal Care", image: "https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=600&auto=format", items: "Soap, Shampoo, Toothpaste", description: "Daily personal hygiene essentials", tags: ["Bath", "Hair Care", "Oral Care"] },
+    { name: "Skincare", catKey: "Skincare", image: "https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?w=600&auto=format", items: "Facewash, Cream, Lotion", description: "Nourish & protect your skin", tags: ["Face Care", "Moisturizer"] },
+    { name: "Bathroom Essentials", catKey: "Bathroom Essentials", image: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=600&auto=format", items: "Toothpaste, Handwash, Soap", description: "Complete bathroom care", tags: ["Handwash", "Toothpaste"] },
+    { name: "Baby Care", catKey: "Baby Care", image: "https://images.unsplash.com/photo-1519689680058-324335c77eba?w=600&auto=format", items: "Diapers, Wipes, Baby Lotion", description: "Safe & gentle baby products", tags: ["Diapers", "Baby Wipes"] },
+    { name: "Pet Care", catKey: "Pet Care", image: "https://images.unsplash.com/photo-1545249390-6bdfa286032f?w=600&auto=format", items: "Dog Food, Cat Food, Treats", description: "Premium nutrition for your pets", tags: ["Dog Food", "Cat Food"] },
+    { name: "Organic", catKey: "Organic", image: "https://images.unsplash.com/photo-1542838132-92c53300491e?w=600&auto=format", items: "Organic Atta, Honey, Tea", description: "Certified organic & chemical-free", tags: ["Organic", "Natural", "Pure"] }
+  ];
+
+  function loadCategories() {
+    const grid = document.getElementById("categoriesGrid");
+    if (!grid) return;
+    
+    grid.innerHTML = categoriesData.map(cat => `
+      <div class="category-card" data-category="${cat.catKey}">
+        <div class="image-wrapper">
+          <img class="category-image" src="${cat.image}" alt="${cat.name}" loading="lazy">
+          <div class="category-overlay"></div>
+          <div class="category-icon">
+            ${getIconForCategory(cat.name)}
+          </div>
+        </div>
+        <div class="category-info">
+          <h3>${cat.name}</h3>
+          <p>${cat.description}</p>
+          <div class="category-tags">
+            ${cat.tags.map(tag => `<span>${tag}</span>`).join('')}
+          </div>
+          <a href="shop.html" class="shop-now-link" data-cat="${cat.catKey}">
+            Shop Now <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    `).join('');
+
+    document.querySelectorAll('.shop-now-link').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.location.href = 'shop.html';
+      });
+    });
+
+    document.querySelectorAll('.category-card').forEach(card => {
+      card.addEventListener('click', (e) => {
+        if(e.target.closest('.shop-now-link')) return;
+        window.location.href = 'shop.html';
+      });
+    });
+  }
+
+  function getIconForCategory(name) {
+    const iconMap = {
+      "Fruits & Vegetables": "🍎", "Dairy & Bakery": "🥛", "Snacks & Beverages": "🍿",
+      "Atta, Rice & Dal": "🍚", "Cooking Essentials": "🫒", "Masala & Spices": "🌶️",
+      "Frozen Foods": "❄️", "Meat & Seafood": "🍗", "Breakfast Items": "🥣",
+      "Instant Food": "🍜", "Cold Drinks": "🥤", "Household Items": "🧹",
+      "Cleaning Supplies": "🧼", "Personal Care": "🧴", "Skincare": "✨",
+      "Bathroom Essentials": "🚿", "Baby Care": "👶", "Pet Care": "🐾", "Organic": "🌱"
+    };
+    return iconMap[name] || "🛒";
+  }
+
+  function sendToWhatsApp() {
+    const phoneNumber = "919027038209";
+    let message = "🛒 *7 HEAVEN - Explore Categories* 🛒\n\nI'm interested in your grocery categories!\n\n";
+    message += "📋 *Available Categories:*\n";
+    categoriesData.slice(0, 12).forEach(cat => {
+      message += `• ${cat.name} - ${cat.items}\n`;
+    });
+    message += `\n...and ${categoriesData.length - 12} more categories!\n\n`;
+    message += "📍 I'd like to place an order. Please share details.\n\n📞 Contact: +91 9027038209\n\nThank you! 🚚";
+    
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+    window.open(whatsappUrl, '_blank');
+  }
+
+  function showNotification(msg) {
+    const notification = document.createElement('div');
+    notification.textContent = msg;
+    notification.style.position = 'fixed';
+    notification.style.bottom = '100px';
+    notification.style.right = '30px';
+    notification.style.backgroundColor = '#2e7d32';
+    notification.style.color = 'white';
+    notification.style.padding = '12px 24px';
+    notification.style.borderRadius = '40px';
+    notification.style.zIndex = '1200';
+    notification.style.fontWeight = '500';
+    document.body.appendChild(notification);
+    setTimeout(() => notification.remove(), 2000);
+  }
+
+  // Event Listeners
+  document.getElementById("whatsappHeaderBtn")?.addEventListener("click", sendToWhatsApp);
+  document.getElementById("floatWhatsAppBtn")?.addEventListener("click", sendToWhatsApp);
+  document.getElementById("heroWhatsappBtn")?.addEventListener("click", sendToWhatsApp);
+  document.getElementById("qualityWhatsappBtn")?.addEventListener("click", sendToWhatsApp);
+  
+  document.getElementById("subscribeBtn")?.addEventListener("click", () => {
+    const email = document.getElementById("newsEmail")?.value;
+    if(email) {
+      showNotification("Subscribed successfully! 🎉 Get 10% off on first order!");
+      document.getElementById("newsEmail").value = "";
+    } else {
+      showNotification("Please enter your email");
+    }
+  });
+
+  // Initialize
+  loadCategories();
+  updateCartCount();
+</script>
+</body>
+</html>

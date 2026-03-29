@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text x='50%' y='50%' text-anchor='middle' dy='.3em' font-size='80' fill='%232e7d32'>🛒</text></svg>">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Contact 7 Heaven - Premium Grocery Store. Get in touch for orders, inquiries, or feedback. We're here to help!">
+  <title>7 Heaven - Contact Us | Premium Grocery Store</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #fefef8;
+      color: #1e2a32;
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      --primary-green: #2e7d32;
+      --primary-light: #4caf50;
+      --accent-orange: #f57c00;
+      --accent-light-orange: #fff3e0;
+      --gray-bg: #f8f9fa;
+      --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+      --transition: all 0.3s ease;
+      --whatsapp-green: #25D366;
+    }
+
+    .sticky-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: white;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .header-main {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
+      gap: 16px;
+    }
+
+    .logo h1 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--primary-green);
+      letter-spacing: -0.5px;
+    }
+    .logo span {
+      color: var(--accent-orange);
+    }
+    .logo a {
+      text-decoration: none;
+    }
+    .logo h1 {
+        margin-left: 40px;}
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: #334155;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--primary-green);
+    }
+    .cart-whatsapp {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .cart-icon {
+      position: relative;
+      font-size: 1.6rem;
+      cursor: pointer;
+      color: #1e2a32;
+      transition: var(--transition);
+      text-decoration: none;
+      display: inline-block;
+    }
+    .cart-icon:hover { color: var(--primary-green); }
+    .cart-count {
+      position: absolute;
+      top: -8px;
+      right: -12px;
+      background: var(--accent-orange);
+      color: white;
+      font-size: 0.7rem;
+      font-weight: bold;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .whatsapp-btn-header {
+      background: var(--whatsapp-green);
+      border: none;
+      padding: 8px 20px;
+      border-radius: 40px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .whatsapp-btn-header:hover {
+      background: #128C7E;
+      transform: scale(1.02);
+    }
+
+    /* Hero Section */
+    .contact-hero {
+      background: linear-gradient(135deg, #1e4a2f 0%, #2e7d32 100%);
+      border-radius: 32px;
+      margin: 32px 0 48px;
+      padding: 60px 48px;
+      text-align: center;
+      color: white;
+    }
+    .contact-hero h1 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+    .contact-hero p {
+      font-size: 1.1rem;
+      opacity: 0.95;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Contact Grid */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 48px;
+      margin: 48px 0;
+    }
+
+    /* Contact Info Cards */
+    .contact-info-section {
+      background: white;
+      border-radius: 28px;
+      padding: 32px;
+      box-shadow: var(--shadow-sm);
+    }
+    .info-card {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 20px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .info-card:last-child {
+      border-bottom: none;
+    }
+    .info-icon {
+      width: 60px;
+      height: 60px;
+      background: var(--accent-light-orange);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: var(--primary-green);
+    }
+    .info-content h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .info-content p, .info-content a {
+      color: #64748b;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    .info-content a:hover {
+      color: var(--accent-orange);
+    }
+
+    /* Business Hours */
+    .hours-card {
+      margin-top: 32px;
+      background: var(--gray-bg);
+      border-radius: 20px;
+      padding: 24px;
+    }
+    .hours-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .hours-list {
+      list-style: none;
+    }
+    .hours-list li {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px dashed #e2e8f0;
+    }
+    .hours-list li span:first-child {
+      font-weight: 500;
+    }
+    .hours-list li span:last-child {
+      color: var(--primary-green);
+      font-weight: 600;
+    }
+
+    /* Contact Form */
+    .contact-form-section {
+      background: white;
+      border-radius: 28px;
+      padding: 32px;
+      box-shadow: var(--shadow-sm);
+    }
+    .contact-form-section h2 {
+      font-size: 1.6rem;
+      margin-bottom: 8px;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 14px 18px;
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      transition: var(--transition);
+      background: var(--gray-bg);
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--primary-green);
+      box-shadow: 0 0 0 3px rgba(46,125,50,0.1);
+      background: white;
+    }
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+    .submit-btn {
+      background: var(--primary-green);
+      color: white;
+      border: none;
+      padding: 14px 32px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: var(--transition);
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .submit-btn:hover {
+      background: #1b5e20;
+      transform: translateY(-2px);
+    }
+
+    /* Map Section */
+    .map-section {
+      margin: 48px 0;
+    }
+    .section-title {
+      font-size: 1.9rem;
+      font-weight: 700;
+      margin: 48px 0 24px;
+      position: relative;
+      display: inline-block;
+    }
+    .section-title:after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: var(--accent-orange);
+    }
+    .map-container {
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      height: 400px;
+    }
+    .map-container iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* FAQ Section */
+    .faq-section {
+      margin: 48px 0;
+    }
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin-top: 32px;
+    }
+    .faq-item {
+      background: white;
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+    .faq-item:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+    .faq-item h4 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--primary-green);
+    }
+    .faq-item p {
+      color: #64748b;
+      line-height: 1.5;
+    }
+
+    /* Footer */
+    footer {
+      background: #0f2b1d;
+      color: #ddd;
+      padding: 48px 0 24px;
+      margin-top: 48px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 32px;
+    }
+    .footer-col h4 {
+      color: white;
+      margin-bottom: 20px;
+    }
+    .footer-col a, .footer-col p {
+      display: block;
+      color: #bbb;
+      text-decoration: none;
+      margin-bottom: 12px;
+      transition: var(--transition);
+    }
+    .footer-col a:hover {
+      color: var(--accent-orange);
+    }
+    .social-icons i {
+      font-size: 1.6rem;
+      margin-right: 16px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .social-icons i:hover {
+      color: var(--accent-orange);
+    }
+    .newsletter input {
+      padding: 12px;
+      border-radius: 40px;
+      border: none;
+      width: 70%;
+      margin-right: 8px;
+    }
+    .btn-primary {
+      background: var(--accent-orange);
+      color: white;
+      padding: 10px 24px;
+      border-radius: 40px;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .btn-primary:hover {
+      background: #e65100;
+    }
+
+    /* Floating WhatsApp */
+    .float-whatsapp {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background-color: var(--whatsapp-green);
+      color: white;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      cursor: pointer;
+      transition: var(--transition);
+      z-index: 1000;
+    }
+    .float-whatsapp:hover {
+      transform: scale(1.1);
+    }
+
+    @media (max-width: 768px) {
+      .header-main { flex-direction: column; align-items: stretch; }
+      .nav-links { justify-content: center; gap: 20px; flex-wrap: wrap; }
+      .contact-hero { padding: 40px 24px; }
+      .contact-hero h1 { font-size: 1.8rem; }
+      .contact-grid { grid-template-columns: 1fr; gap: 32px; }
+      .map-container { height: 300px; }
+      .float-whatsapp { width: 50px; height: 50px; font-size: 1.5rem; }
+    }
+
+    .success-message {
+      background: var(--primary-green);
+      color: white;
+      padding: 12px;
+      border-radius: 12px;
+      margin-top: 16px;
+      text-align: center;
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
+    .success-message.show {
+      display: block;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="sticky-header">
+  <div class="container header-main">
+    <div class="logo"><a href="index.html" style="text-decoration: none;"><h1>7 <span>HEAVEN</span></h1></a></div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="categories.html">Categories</a>
+      <a href="shop.html">Shop</a>
+      <a href="offers.html">Offers</a>
+      <a href="about.html">About</a>
+      <a href="contact.html" class="active">Contact</a>
+      <div class="cart-whatsapp">
+        <a href="cart.html" class="cart-icon" id="cartIconLink">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="cart-count" id="cartCount">0</span>
+        </a>
+        <button class="whatsapp-btn-header" id="whatsappHeaderBtn"><i class="fab fa-whatsapp"></i> WhatsApp</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="container">
+    <!-- Hero Section -->
+    <div class="contact-hero">
+      <h1>Get in Touch</h1>
+      <p>Have questions, feedback, or need assistance? We're here to help! Reach out to us anytime.</p>
+    </div>
+
+    <!-- Contact Grid -->
+    <div class="contact-grid">
+      <!-- Contact Info & Hours -->
+      <div class="contact-info-section">
+        <div class="info-card">
+          <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div class="info-content">
+            <h3>Our Store Location</h3>
+            <p>123 MG Road, Brigade Road,<br>Bangalore - 560001, Karnataka, India</p>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="info-icon"><i class="fas fa-phone-alt"></i></div>
+          <div class="info-content">
+            <h3>Phone Number</h3>
+            <p><a href="tel:+919027038209">+91 90270 38209</a></p>
+            <p style="font-size: 0.85rem; margin-top: 4px;">Mon-Sat: 8 AM - 10 PM</p>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="info-icon"><i class="fab fa-whatsapp"></i></div>
+          <div class="info-content">
+            <h3>WhatsApp</h3>
+            <p><a href="https://wa.me/919027038209" target="_blank">+91 90270 38209</a></p>
+            <p style="font-size: 0.85rem;">Order via WhatsApp for quick delivery</p>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="info-icon"><i class="fas fa-envelope"></i></div>
+          <div class="info-content">
+            <h3>Email Address</h3>
+            <p><a href="mailto:support@7heaven.com">support@7heaven.com</a></p>
+            <p><a href="mailto:orders@7heaven.com">orders@7heaven.com</a></p>
+          </div>
+        </div>
+
+        <!-- Business Hours -->
+        <div class="hours-card">
+          <h3><i class="fas fa-clock"></i> Business Hours</h3>
+          <ul class="hours-list">
+            <li><span>Monday - Friday</span><span>8:00 AM - 10:00 PM</span></li>
+            <li><span>Saturday</span><span>8:00 AM - 10:00 PM</span></li>
+            <li><span>Sunday</span><span>9:00 AM - 8:00 PM</span></li>
+            <li><span>Delivery Hours</span><span>8:00 AM - 11:00 PM</span></li>
+            <li style="border-bottom: none; color: var(--accent-orange);"><span>Same Day Delivery</span><span>Order before 6 PM</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Contact Form - Sends to WhatsApp -->
+      <div class="contact-form-section">
+        <h2>Send Us a Message</h2>
+        <p style="color: #64748b; margin-bottom: 24px;">We'll respond within 24 hours on WhatsApp</p>
+        <form id="contactForm">
+          <div class="form-group">
+            <input type="text" id="fullName" placeholder="Your Full Name *" required>
+          </div>
+          <div class="form-group">
+            <input type="email" id="email" placeholder="Email Address *" required>
+          </div>
+          <div class="form-group">
+            <input type="tel" id="phone" placeholder="Phone Number (for WhatsApp)" required>
+          </div>
+          <div class="form-group">
+            <select id="subject">
+              <option value="General Inquiry">General Inquiry</option>
+              <option value="Order Related">Order Related</option>
+              <option value="Delivery Issue">Delivery Issue</option>
+              <option value="Product Question">Product Question</option>
+              <option value="Feedback / Suggestion">Feedback / Suggestion</option>
+              <option value="Complaint">Complaint</option>
+              <option value="Bulk Order">Bulk Order / Wholesale</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <textarea id="message" placeholder="Your Message *" required></textarea>
+          </div>
+          <button type="submit" class="submit-btn">
+            <i class="fab fa-whatsapp"></i> Send Message on WhatsApp
+          </button>
+          <div id="formSuccess" class="success-message">
+            <i class="fas fa-check-circle"></i> Message sent! We'll contact you shortly on WhatsApp.
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Google Map Section -->
+    <div class="map-section">
+      <h2 class="section-title">📍 Find Us Here</h2>
+      <div class="map-container">
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.614335306237!2d77.59456457479138!3d12.971598687371619!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1670c9b44e6d%3A0xf8dfc3e8517e4fe0!2sMG%20Road%2C%20Bangalore%2C%20Karnataka!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
+          allowfullscreen="" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="faq-section">
+      <h2 class="section-title">❓ Frequently Asked Questions</h2>
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h4><i class="fas fa-truck"></i> How fast is delivery?</h4>
+          <p>We offer same-day delivery within 2-3 hours for orders placed before 6 PM. Free delivery on orders above ₹499.</p>
+        </div>
+        <div class="faq-item">
+          <h4><i class="fas fa-undo-alt"></i> What is your return policy?</h4>
+          <p>We offer easy returns within 24 hours of delivery. If you're not satisfied, we'll replace or refund immediately.</p>
+        </div>
+        <div class="faq-item">
+          <h4><i class="fas fa-leaf"></i> Are products fresh?</h4>
+          <p>Yes! All our fruits, vegetables, and dairy products are sourced directly from local farms and delivered fresh daily.</p>
+        </div>
+        <div class="faq-item">
+          <h4><i class="fab fa-whatsapp"></i> Can I order via WhatsApp?</h4>
+          <p>Absolutely! Send us a message on WhatsApp at +91 9027038209 with your order details, and we'll process it immediately.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="container footer-grid">
+    <div class="footer-col">
+      <h4>7 HEAVEN</h4>
+      <p>Your premium grocery partner since 2020</p>
+      <div class="social-icons">
+        <i class="fab fa-facebook"></i>
+        <i class="fab fa-instagram"></i>
+        <i class="fab fa-twitter"></i>
+        <i class="fab fa-whatsapp"></i>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="categories.html">Categories</a>
+      <a href="contact.html">Contact Us</a>
+      <a href="#">FAQs</a>
+      <a href="cart.html">Cart</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact Info</h4>
+      <p><i class="fas fa-phone"></i> +91 9027038209</p>
+      <p><i class="fab fa-whatsapp"></i> WhatsApp: +91 9027038209</p>
+      <p><i class="fas fa-envelope"></i> support@7heaven.com</p>
+      <p><i class="fas fa-map-marker-alt"></i> MG Road, Bangalore</p>
+    </div>
+    <div class="footer-col newsletter">
+      <h4>Newsletter</h4>
+      <input type="email" id="newsEmail" placeholder="Your email address">
+      <button class="btn-primary" id="subscribeBtn" style="margin-top: 12px;">Subscribe</button>
+    </div>
+  </div>
+  <div class="container" style="text-align:center; margin-top:40px; padding-top:20px; border-top:1px solid rgba(255,255,255,0.1);">
+    © 2025 7 HEAVEN — All rights reserved. | Delivering happiness since 2020
+  </div>
+</footer>
+
+<!-- Floating WhatsApp Button -->
+<div class="float-whatsapp" id="floatWhatsAppBtn">
+  <i class="fab fa-whatsapp"></i>
+</div>
+
+<script>
+  // WhatsApp Business Number
+  const WHATSAPP_NUMBER = "919027038209";
+  
+  // Load cart from localStorage to update cart count
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+  // Update cart count in header
+  function updateCartCount() {
+    const count = cart.reduce((sum, item) => sum + item.qty, 0);
+    const cartCountElem = document.getElementById("cartCount");
+    if (cartCountElem) cartCountElem.innerText = count;
+  }
+
+  // Send Contact Form Data to WhatsApp
+  function sendContactToWhatsApp(formData) {
+    const { name, email, phone, subject, message } = formData;
+    
+    const whatsappMessage = `*🛒 7 HEAVEN - New Contact Inquiry* 🛒
+    
+📋 *Customer Details:*
+━━━━━━━━━━━━━━━━━━━━
+👤 *Name:* ${name}
+📧 *Email:* ${email}
+📞 *Phone:* ${phone}
+
+📌 *Subject:* ${subject}
+
+💬 *Message:*
+${message}
+
+━━━━━━━━━━━━━━━━━━━━
+⏰ *Time:* ${new Date().toLocaleString()}
+📍 *Source:* Contact Form (7 Heaven Website)`;
+
+    const encodedMessage = encodeURIComponent(whatsappMessage);
+    const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+    
+    // Open WhatsApp in new tab
+    window.open(whatsappUrl, '_blank');
+  }
+
+  // Contact Form Submit Handler
+  const contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const name = document.getElementById('fullName').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const subject = document.getElementById('subject').value;
+      const message = document.getElementById('message').value.trim();
+      
+      if (!name || !email || !message) {
+        showNotification("Please fill all required fields!", "error");
+        return;
+      }
+      
+      if (!phone) {
+        showNotification("Please enter your phone number for WhatsApp contact!", "warning");
+        return;
+      }
+      
+      // Send to WhatsApp
+      sendContactToWhatsApp({
+        name,
+        email,
+        phone,
+        subject,
+        message
+      });
+      
+      // Show success message
+      const successDiv = document.getElementById('formSuccess');
+      successDiv.classList.add('show');
+      contactForm.reset();
+      
+      setTimeout(() => {
+        successDiv.classList.remove('show');
+      }, 5000);
+      
+      showNotification("Message sent! Check WhatsApp for confirmation.", "success");
+    });
+  }
+
+  function sendDirectWhatsApp() {
+    const message = "*🌟 Welcome to 7 Heaven!* 🌟\n\nI'd like to know more about your grocery products and offers.\n\nPlease share your catalog and current deals.\n\nThank you! 🛒";
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
+  }
+
+  function showNotification(msg, type = "success") {
+    const n = document.createElement('div');
+    n.textContent = msg;
+    const bgColor = type === "success" ? "#2e7d32" : (type === "error" ? "#d32f2f" : "#f57c00");
+    n.style.cssText = `position:fixed; bottom:100px; right:20px; background:${bgColor}; color:white; padding:12px 20px; border-radius:40px; z-index:1200; box-shadow:0 4px 12px rgba(0,0,0,0.2);`;
+    document.body.appendChild(n);
+    setTimeout(() => n.remove(), 3000);
+  }
+
+  // Event Listeners
+  document.getElementById("whatsappHeaderBtn")?.addEventListener("click", sendDirectWhatsApp);
+  document.getElementById("floatWhatsAppBtn")?.addEventListener("click", sendDirectWhatsApp);
+  
+  // Newsletter Subscribe
+  document.getElementById("subscribeBtn")?.addEventListener("click", () => {
+    const email = document.getElementById("newsEmail")?.value;
+    if(email && email.includes('@')) {
+      const msg = `*Newsletter Subscription*\n\nEmail: ${email}\n\nI'd like to receive updates from 7 Heaven.`;
+      window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
+      showNotification("Subscribed! Check WhatsApp for confirmation.");
+      document.getElementById("newsEmail").value = "";
+    } else {
+      showNotification("Please enter a valid email address", "error");
+    }
+  });
+
+  // Initialize cart count
+  updateCartCount();
+</script>
+</body>
+</html>

@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+ <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text x='50%' y='50%' text-anchor='middle' dy='.3em' font-size='80' fill='%232e7d32'>🛒</text></svg>">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Your shopping cart - 7 Heaven Grocery Store. Review your items, update quantities, calculate delivery charges, and place your order.">
+  <title>Your Cart - 7 Heaven | Premium Grocery Store</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #fefef8;
+      color: #1e2a32;
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      --primary-green: #2e7d32;
+      --primary-light: #4caf50;
+      --accent-orange: #f57c00;
+      --accent-light-orange: #fff3e0;
+      --gray-bg: #f8f9fa;
+      --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+      --transition: all 0.3s ease;
+      --whatsapp-green: #25D366;
+    }
+
+    .sticky-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: white;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .header-main {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
+      gap: 16px;
+    }
+
+    .logo h1 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--primary-green);
+      letter-spacing: -0.5px;
+    }
+    .logo span {
+      color: var(--accent-orange);
+    }
+    .logo a {
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: #334155;
+      font-weight: 500;
+      transition: var(--transition);
+      font-size: 0.95rem;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--primary-green);
+    }
+    .logo h1 {
+        margin-left: 40px;}
+    .cart-whatsapp {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .cart-icon {
+      font-size: 1.6rem;
+      cursor: pointer;
+      color: #1e2a32;
+      transition: var(--transition);
+      text-decoration: none;
+      display: inline-block;
+      position: relative;
+    }
+    .cart-icon:hover { color: var(--primary-green); }
+    .cart-count {
+      position: absolute;
+      top: -8px;
+      right: -12px;
+      background: var(--accent-orange);
+      color: white;
+      font-size: 0.7rem;
+      font-weight: bold;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .whatsapp-btn-header {
+      background: var(--whatsapp-green);
+      border: none;
+      padding: 8px 20px;
+      border-radius: 40px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .whatsapp-btn-header:hover {
+      background: #128C7E;
+      transform: scale(1.02);
+    }
+
+    /* Cart Page Styles */
+    .cart-page {
+      margin: 48px 0 80px;
+      min-height: 60vh;
+    }
+    .cart-header {
+      margin-bottom: 32px;
+    }
+    .cart-header h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #1e2a32;
+      margin-bottom: 8px;
+    }
+    .cart-header p {
+      color: #64748b;
+    }
+
+    .cart-container {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 40px;
+    }
+
+    /* Cart Items Table */
+    .cart-items-section {
+      background: white;
+      border-radius: 28px;
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+    .cart-items-header {
+      display: grid;
+      grid-template-columns: 3fr 1fr 1fr 0.5fr;
+      background: var(--gray-bg);
+      padding: 16px 20px;
+      font-weight: 700;
+      color: #475569;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .cart-item {
+      display: grid;
+      grid-template-columns: 3fr 1fr 1fr 0.5fr;
+      align-items: center;
+      padding: 20px;
+      border-bottom: 1px solid #f0f0f0;
+      transition: var(--transition);
+    }
+    .cart-item:hover {
+      background: #fafaf8;
+    }
+    .product-info {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+    .product-img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 16px;
+    }
+    .product-details h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .product-details p {
+      font-size: 0.75rem;
+      color: #94a3b8;
+    }
+    .item-price {
+      font-weight: 700;
+      color: var(--primary-green);
+      font-size: 1.1rem;
+    }
+    .quantity-control {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .qty-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid #e2e8f0;
+      background: white;
+      cursor: pointer;
+      font-weight: 700;
+      transition: var(--transition);
+    }
+    .qty-btn:hover {
+      background: var(--primary-green);
+      color: white;
+      border-color: var(--primary-green);
+    }
+    .item-qty {
+      font-weight: 600;
+      min-width: 30px;
+      text-align: center;
+    }
+    .item-subtotal {
+      font-weight: 700;
+      color: #1e2a32;
+      font-size: 1rem;
+    }
+    .remove-btn {
+      background: none;
+      border: none;
+      color: #e11d48;
+      cursor: pointer;
+      font-size: 1.2rem;
+      transition: var(--transition);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .remove-btn:hover {
+      background: #fee2e2;
+      color: #c41e3a;
+    }
+
+    /* Cart Summary */
+    .cart-summary {
+      background: white;
+      border-radius: 28px;
+      padding: 28px;
+      box-shadow: var(--shadow-sm);
+      position: sticky;
+      top: 100px;
+      height: fit-content;
+    }
+    .cart-summary h3 {
+      font-size: 1.3rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--accent-orange);
+      display: inline-block;
+    }
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0;
+      color: #475569;
+    }
+    .summary-row.total {
+      border-top: 2px solid #e2e8f0;
+      margin-top: 12px;
+      padding-top: 20px;
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: #1e2a32;
+    }
+    .delivery-info {
+      background: var(--accent-light-orange);
+      padding: 12px;
+      border-radius: 16px;
+      margin: 16px 0;
+      font-size: 0.85rem;
+      color: #b45309;
+    }
+    .delivery-free {
+      background: #e8f5e9;
+      color: var(--primary-green);
+    }
+    .checkout-btn {
+      width: 100%;
+      background: var(--whatsapp-green);
+      color: white;
+      border: none;
+      padding: 14px;
+      border-radius: 40px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: var(--transition);
+      margin-top: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    .checkout-btn:hover {
+      background: #128C7E;
+      transform: translateY(-2px);
+    }
+    .continue-shopping {
+      display: block;
+      text-align: center;
+      margin-top: 16px;
+      color: var(--primary-green);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .continue-shopping:hover {
+      color: var(--accent-orange);
+    }
+
+    /* Empty Cart */
+    .empty-cart {
+      text-align: center;
+      padding: 80px 20px;
+      background: white;
+      border-radius: 28px;
+      box-shadow: var(--shadow-sm);
+    }
+    .empty-cart i {
+      font-size: 5rem;
+      color: #cbd5e1;
+      margin-bottom: 20px;
+    }
+    .empty-cart h3 {
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+    }
+    .empty-cart p {
+      color: #64748b;
+      margin-bottom: 24px;
+    }
+    .shop-now-btn {
+      background: var(--primary-green);
+      color: white;
+      border: none;
+      padding: 12px 32px;
+      border-radius: 40px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .shop-now-btn:hover {
+      background: #1b5e20;
+      transform: scale(1.02);
+    }
+
+    /* Footer */
+    footer {
+      background: #0f2b1d;
+      color: #ddd;
+      padding: 48px 0 24px;
+      margin-top: 48px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 32px;
+    }
+    .footer-col h4 {
+      color: white;
+      margin-bottom: 20px;
+    }
+    .footer-col a, .footer-col p {
+      display: block;
+      color: #bbb;
+      text-decoration: none;
+      margin-bottom: 12px;
+      transition: var(--transition);
+    }
+    .footer-col a:hover {
+      color: var(--accent-orange);
+    }
+    .social-icons i {
+      font-size: 1.6rem;
+      margin-right: 16px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .social-icons i:hover {
+      color: var(--accent-orange);
+    }
+    .newsletter input {
+      padding: 12px;
+      border-radius: 40px;
+      border: none;
+      width: 70%;
+      margin-right: 8px;
+    }
+    .btn-primary {
+      background: var(--accent-orange);
+      color: white;
+      padding: 10px 24px;
+      border-radius: 40px;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .btn-primary:hover {
+      background: #e65100;
+    }
+
+    .float-whatsapp {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background-color: var(--whatsapp-green);
+      color: white;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      cursor: pointer;
+      transition: var(--transition);
+      z-index: 1000;
+    }
+    .float-whatsapp:hover {
+      transform: scale(1.1);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 900px) {
+      .cart-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+      .cart-items-header {
+        display: none;
+      }
+      .cart-item {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        text-align: center;
+        padding: 20px;
+      }
+      .product-info {
+        flex-direction: column;
+        text-align: center;
+      }
+      .quantity-control {
+        justify-content: center;
+      }
+      .cart-summary {
+        position: static;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .header-main {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .nav-links {
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+      .cart-header h1 {
+        font-size: 1.6rem;
+      }
+      .product-img {
+        width: 100px;
+        height: 100px;
+      }
+      .float-whatsapp {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+        bottom: 20px;
+        right: 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 16px;
+      }
+      .cart-summary {
+        padding: 20px;
+      }
+      .summary-row.total {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="sticky-header">
+  <div class="container header-main">
+    <div class="logo"><a href="index.html" style="text-decoration: none;"><h1>7 <span>HEAVEN</span></h1></a></div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="categories.html">Categories</a>
+      <a href="shop.html">Shop</a>
+      <a href="cart.html" class="active">Cart</a>
+      <a href="offers.html">Offers</a>
+      <a href="contact.html">Contact</a>
+      <div class="cart-whatsapp">
+        <a href="cart.html" class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="cart-count" id="cartCount">0</span></a>
+        <button class="whatsapp-btn-header" id="whatsappHeaderBtn"><i class="fab fa-whatsapp"></i> WhatsApp</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main class="container">
+  <div class="cart-page">
+    <div class="cart-header">
+      <h1>Your Shopping Cart</h1>
+      <p>Review your items, update quantities, and proceed to checkout</p>
+    </div>
+
+    <div id="cartContent"></div>
+  </div>
+</main>
+
+<footer>
+  <div class="container footer-grid">
+    <div class="footer-col"><h4>7 HEAVEN</h4><p>Your premium grocery partner</p><div class="social-icons"><i class="fab fa-facebook"></i><i class="fab fa-instagram"></i><i class="fab fa-twitter"></i></div></div>
+    <div class="footer-col"><h4>Quick Links</h4><a href="index.html">Home</a><a href="contact.html">Contact</a><a href="#">FAQs</a><a href="shop.html">Shop</a><a href="cart.html">Cart</a></div>
+    <div class="footer-col"><h4>Contact</h4><p><i class="fas fa-phone"></i> +91 9027038209</p><p><i class="fab fa-whatsapp"></i> WhatsApp: +91 9027038209</p><p><i class="fas fa-envelope"></i> support@7heaven.com</p></div>
+    <div class="footer-col newsletter"><h4>Newsletter</h4><input type="email" id="newsEmail" placeholder="Your email"><button class="btn-primary" id="subscribeBtn">Subscribe</button></div>
+  </div>
+  <div class="container" style="text-align:center; margin-top:40px; padding-top:20px; border-top:1px solid rgba(255,255,255,0.1);">
+    © 2025 7 HEAVEN — All rights reserved. | Delivering happiness since 2020
+  </div>
+</footer>
+
+<div class="float-whatsapp" id="floatWhatsAppBtn"><i class="fab fa-whatsapp"></i></div>
+
+<script>
+  // Product Database (must match shop.html)
+  const productDatabase = [
+    { id: 1, name: "Organic Apples", price: 120, image: "https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?w=400&auto=format" },
+    { id: 2, name: "Fresh Milk (1L)", price: 58, image: "https://images.unsplash.com/photo-1550583724-b2692b85b150?w=400&auto=format" },
+    { id: 3, name: "Potato Chips", price: 35, image: "https://images.unsplash.com/photo-1566478989037-eec170784d0b?w=400&auto=format" },
+    { id: 4, name: "Fresh Bread", price: 40, image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&auto=format" },
+    { id: 5, name: "Amul Butter", price: 55, image: "https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?w=400&auto=format" },
+    { id: 6, name: "Basmati Rice (5kg)", price: 450, image: "https://images.unsplash.com/photo-1536304993881-ff6e9eefa2a6?w=400&auto=format" },
+    { id: 7, name: "Cooking Oil (1L)", price: 115, image: "https://images.unsplash.com/photo-1615486364233-8d7d0c6dba43?w=400&auto=format" },
+    { id: 8, name: "Dairy Milk Chocolate", price: 45, image: "https://images.unsplash.com/photo-1549007953-9e8b4edd3e73?w=400&auto=format" },
+    { id: 9, name: "Fresh Tomatoes", price: 40, image: "https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=400&auto=format" },
+    { id: 10, name: "Organic Honey", price: 350, image: "https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=400&auto=format" },
+    { id: 11, name: "Coca-Cola (2L)", price: 85, image: "https://images.unsplash.com/photo-1554866585-cd94860890b7?w=400&auto=format" },
+    { id: 12, name: "Maggi Noodles", price: 12, image: "https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?w=400&auto=format" },
+    { id: 13, name: "Fresh Eggs (6 pcs)", price: 65, image: "https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f?w=400&auto=format" },
+    { id: 14, name: "Toor Dal (1kg)", price: 140, image: "https://images.unsplash.com/photo-1515542622106-78bda8ba0e5b?w=400&auto=format" },
+    { id: 15, name: "Turmeric Powder", price: 45, image: "https://images.unsplash.com/photo-1532336414038-cf19250c5757?w=400&auto=format" }
+  ];
+
+  // Load cart from localStorage
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+  // Save cart to localStorage
+  function saveCart() {
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartCount();
+  }
+
+  // Update cart count in header
+  function updateCartCount() {
+    const count = cart.reduce((sum, item) => sum + item.qty, 0);
+    const cartCountElem = document.getElementById("cartCount");
+    if (cartCountElem) cartCountElem.innerText = count;
+  }
+
+  // Get product details by ID
+  function getProductDetails(id) {
+    return productDatabase.find(p => p.id === id);
+  }
+
+  // Update item quantity
+  function updateQuantity(id, newQty) {
+    if (newQty < 1) {
+      removeItem(id);
+      return;
+    }
+    const item = cart.find(i => i.id === id);
+    if (item) {
+      item.qty = newQty;
+      saveCart();
+      renderCart();
+    }
+  }
+
+  // Remove item from cart
+  function removeItem(id) {
+    cart = cart.filter(item => item.id !== id);
+    saveCart();
+    renderCart();
+    showNotification("Item removed from cart");
+  }
+
+  // Calculate subtotal
+  function calculateSubtotal() {
+    return cart.reduce((sum, item) => {
+      const product = getProductDetails(item.id);
+      return sum + (product ? product.price * item.qty : 0);
+    }, 0);
+  }
+
+  // Calculate delivery charge (Free above ₹499)
+  function calculateDelivery(subtotal) {
+    return subtotal >= 499 ? 0 : 40;
+  }
+
+  // Calculate total
+  function calculateTotal() {
+    const subtotal = calculateSubtotal();
+    return subtotal + calculateDelivery(subtotal);
+  }
+
+  // Render cart content
+  function renderCart() {
+    const container = document.getElementById("cartContent");
+    
+    if (!cart || cart.length === 0) {
+      container.innerHTML = `
+        <div class="empty-cart">
+          <i class="fas fa-shopping-cart"></i>
+          <h3>Your cart is empty</h3>
+          <p>Looks like you haven't added any items to your cart yet.</p>
+          <button class="shop-now-btn" onclick="window.location.href='shop.html'">Continue Shopping →</button>
+        </div>
+      `;
+      updateCartCount();
+      return;
+    }
+
+    const subtotal = calculateSubtotal();
+    const delivery = calculateDelivery(subtotal);
+    const total = calculateTotal();
+    const freeDeliveryAmount = 499 - subtotal;
+
+    container.innerHTML = `
+      <div class="cart-container">
+        <div class="cart-items-section">
+          <div class="cart-items-header">
+            <span>Product</span>
+            <span>Price</span>
+            <span>Quantity</span>
+            <span>Total</span>
+          </div>
+          ${cart.map(item => {
+            const product = getProductDetails(item.id);
+            if (!product) return '';
+            return `
+              <div class="cart-item">
+                <div class="product-info">
+                  <img class="product-img" src="${product.image}" alt="${product.name}">
+                  <div class="product-details">
+                    <h3>${product.name}</h3>
+                    <p>In Stock | Fresh Grocery</p>
+                  </div>
+                </div>
+                <div class="item-price">₹${product.price}</div>
+                <div class="quantity-control">
+                  <button class="qty-btn" onclick="updateQuantity(${item.id}, ${item.qty - 1})">−</button>
+                  <span class="item-qty">${item.qty}</span>
+                  <button class="qty-btn" onclick="updateQuantity(${item.id}, ${item.qty + 1})">+</button>
+                </div>
+                <div class="item-subtotal">₹${product.price * item.qty}</div>
+                <button class="remove-btn" onclick="removeItem(${item.id})"><i class="fas fa-trash-alt"></i></button>
+              </div>
+            `;
+          }).join('')}
+        </div>
+        <div class="cart-summary">
+          <h3>Order Summary</h3>
+          <div class="summary-row">
+            <span>Subtotal</span>
+            <span>₹${subtotal}</span>
+          </div>
+          <div class="summary-row">
+            <span>Delivery Charge</span>
+            <span>${delivery === 0 ? 'FREE' : '₹' + delivery}</span>
+          </div>
+          ${delivery > 0 ? 
+            `<div class="delivery-info">
+              <i class="fas fa-truck"></i> Add ₹${freeDeliveryAmount} more for FREE delivery!
+            </div>` : 
+            `<div class="delivery-info delivery-free">
+              <i class="fas fa-gift"></i> 🎉 You've unlocked FREE delivery! 🎉
+            </div>`
+          }
+          <div class="summary-row total">
+            <span>Total Amount</span>
+            <span>₹${total}</span>
+          </div>
+          <button class="checkout-btn" id="placeOrderBtn"><i class="fab fa-whatsapp"></i> Place Order on WhatsApp</button>
+          <a href="shop.html" class="continue-shopping"><i class="fas fa-arrow-left"></i> Continue Shopping</a>
+        </div>
+      </div>
+    `;
+    updateCartCount();
+  }
+
+  // Place order on WhatsApp
+  function placeOrderOnWhatsApp() {
+    if (cart.length === 0) {
+      showNotification("Your cart is empty! Add items to place order.", "error");
+      return;
+    }
+
+    const subtotal = calculateSubtotal();
+    const delivery = calculateDelivery(subtotal);
+    const total = calculateTotal();
+    const currentDate = new Date().toLocaleString();
+    
+    let message = "*🛒 7 HEAVEN - New Order* 🛒\n\n";
+    message += "━━━━━━━━━━━━━━━━━━━━\n";
+    message += "*Order Items:*\n";
+    
+    cart.forEach(item => {
+      const product = getProductDetails(item.id);
+      if (product) {
+        message += `• ${product.name} x ${item.qty} = ₹${product.price * item.qty}\n`;
+      }
+    });
+    
+    message += "━━━━━━━━━━━━━━━━━━━━\n";
+    message += `📊 *Subtotal:* ₹${subtotal}\n`;
+    message += `🚚 *Delivery:* ${delivery === 0 ? 'FREE' : '₹' + delivery}\n`;
+    message += `💰 *Total Amount:* ₹${total}\n\n`;
+    message += "━━━━━━━━━━━━━━━━━━━━\n";
+    message += "📍 *Delivery Address:* \n(Please share your full address)\n\n";
+    message += "📞 *Contact:* +91 9027038209\n";
+    message += "⏰ *Order Time:* " + currentDate + "\n\n";
+    message += "Thank you for shopping with 7 Heaven! 🚚✨";
+    
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/919027038209?text=${encodedMessage}`;
+    window.open(whatsappUrl, '_blank');
+  }
+
+  // Show notification
+  function showNotification(msg, type = "success") {
+    const n = document.createElement('div');
+    n.textContent = msg;
+    const bgColor = type === "success" ? "#2e7d32" : "#d32f2f";
+    n.style.cssText = `position:fixed; bottom:100px; right:20px; background:${bgColor}; color:white; padding:12px 20px; border-radius:40px; z-index:1200; box-shadow:0 4px 12px rgba(0,0,0,0.2);`;
+    document.body.appendChild(n);
+    setTimeout(() => n.remove(), 2500);
+  }
+
+  // WhatsApp Direct Message
+  function sendToWhatsApp() {
+    const phoneNumber = "919027038209";
+    const message = "🌟 *Hello 7 Heaven!* 🌟\n\nI'm interested in your grocery products. Please share your catalog and current offers.\n\nThank you! 🛒";
+    window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
+  }
+
+  // Newsletter Subscribe
+  function subscribeNewsletter() {
+    const email = document.getElementById("newsEmail")?.value;
+    if(email && email.includes('@')) {
+      showNotification("Subscribed successfully! 🎉");
+      document.getElementById("newsEmail").value = "";
+    } else {
+      showNotification("Please enter a valid email", "error");
+    }
+  }
+
+  // Event Listeners
+  document.getElementById("whatsappHeaderBtn")?.addEventListener("click", sendToWhatsApp);
+  document.getElementById("floatWhatsAppBtn")?.addEventListener("click", sendToWhatsApp);
+  document.getElementById("subscribeBtn")?.addEventListener("click", subscribeNewsletter);
+  
+  // Delegate event for place order button (since it's dynamically created)
+  document.addEventListener('click', (e) => {
+    if (e.target.id === 'placeOrderBtn' || e.target.closest('#placeOrderBtn')) {
+      placeOrderOnWhatsApp();
+    }
+  });
+
+  // Initialize cart display
+  renderCart();
+</script>
+</body>
+</html>
